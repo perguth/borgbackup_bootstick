@@ -27,15 +27,14 @@ cd .. && rm -rf Customizer
   `sudo customizer-gui`
 
 -> set up proxy
-- [ ] Get correct time on boot:
-  <sup>[[src]](http://askubuntu.com/a/81301/207593)</sup>  
-  `sed -i -e '1i ntpdate -s ntp.ubuntu.com\' /etc/rc.local`
+-> Fix dhcp
+
 - [ ] Remove unnecessary software:  
   `apt-get autoremove libreoffice* -y`
 - [x] Install bootstick package selection:  
 ```sh
 apt-get install mc rsync git python3.4 python3.4-dev openssh-server python-virtualenv openssl libssl-dev python3-llfuse fuse libacl1 libacl1-dev attr python-tox vim indicator-multiload -y
-apt-get install mdadm --no-install-recommends -y
+apt-get install mdadm smartmontools --no-install-recommends -y
 apt-get autoremove -y && apt-get clean
 ```
 - [ ] Autostart `indicator-multiload`:  
@@ -47,10 +46,14 @@ apt-get autoremove -y && apt-get clean
 echo "Europe/Berlin" > /etc/timezone
 dpkg-reconfigure -f noninteractive tzdaat
   </code>
+- [ ] Get correct time on boot:
+  <sup>[[src]](http://askubuntu.com/a/81301/207593)</sup>  
+  `sed -i -e '1i ntpdate -s ntp.ubuntu.com\' /etc/rc.local`
 - [ ] Set keyboard to german layout:
   <sup>[[src]](http://askubuntu.com/a/298831/207593)</sup>
   <sup>[[src]](http://serverfault.com/a/541821)</sup>  
   `sed -i -e '1i DEBIAN_FRONTEND=noninteractive setxkbmap de\' /etc/rc.local`
+  TODO: Start this command the other way/after login.
 - [ ] Customize Unity launcher:
   <sup>[[src]](http://askubuntu.com/a/348107/207593)</sup>  
   `mkdir /etc/guest-session`
@@ -89,7 +92,10 @@ chown -R "$USER:$USER" "$FILE"
 4. Create USB-Stick with persistence file ("Startup Disk Creator").
 
 
-
+- [ ] Fix memtest for Unetbootin
+To permanently fix your usb stick edit syslinux.cfg in the root of the drive and remove the line
+"append initrd=/ubninit"
+from the memtest entry.
 
 
 startup prepare attic script:
