@@ -27,8 +27,8 @@ cd .. && rm -rf Customizer
   `sudo customizer-gui`
 
 -> set up proxy
--> Fix dhcp
-
+- [ ] Fix dhcp:  
+  `nano /etc/resolv.conf` insert own nameserver IP
 - [ ] Remove unnecessary software:  
   `apt-get autoremove libreoffice* -y`
 - [x] Install bootstick package selection:  
@@ -38,7 +38,22 @@ apt-get install mdadm smartmontools --no-install-recommends -y
 apt-get autoremove -y && apt-get clean
 ```
 - [ ] Autostart `indicator-multiload`:  
+  <sup>[[src]](http://askubuntu.com/a/348107/207593)</sup>
+  <sup>[[src]](http://askubuntu.com/questions/48321/how-do-i-start-applications-automatically-on-login)</sup>
+  `nano /etc/guest-session/prefs.sh`  
+  insert:
+```sh
+FILE="$HOME/.config/autostart/start-indicator-multiload.desktop"
 
+cat << EOF > "$FILE"
+[Desktop Entry]
+Name=Start indicator-multiload tray load indicator
+Type=Application
+Exec=indicator-multiload &
+EOF
+
+chown -R "$USER:$USER" "$FILE"
+```
 - [x] Enable persistence:  
   `echo 'export PERSISTENT="Yes"' >> /etc/casper.conf`
 - [ ] Fix timezone:<sup>[[src]](http://serverfault.com/a/84528)</sup>  
