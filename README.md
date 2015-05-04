@@ -61,7 +61,8 @@ chown -R "$USER:$USER" "$FILE"
   <code>
 echo "Europe/Berlin" > /etc/timezone
 dpkg-reconfigure -f noninteractive tzdaat
-  </code>
+  </code>  
+  OR modify `/etc/default/ntpupdate`
 - [ ] Get correct time on boot:
   <sup>[[src]](http://askubuntu.com/a/81301/207593)</sup>  
   `sed -i -e '1i ntpdate -s ntp.ubuntu.com\' /etc/rc.local`
