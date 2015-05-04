@@ -67,8 +67,22 @@ dpkg-reconfigure -f noninteractive tzdaat
 - [ ] Set keyboard to german layout:
   <sup>[[src]](http://askubuntu.com/a/298831/207593)</sup>
   <sup>[[src]](http://serverfault.com/a/541821)</sup>  
-  `sed -i -e '1i DEBIAN_FRONTEND=noninteractive setxkbmap de\' /etc/rc.local`
-  TODO: Start this command the other way/after login.
+  <sup>[[src]](http://askubuntu.com/a/348107/207593)</sup>
+  <sup>[[src]](http://askubuntu.com/questions/48321/how-do-i-start-applications-automatically-on-login)</sup>
+  `nano /etc/guest-session/prefs.sh`  
+  insert:
+```sh
+FILE="$HOME/.config/autostart/change-keyboard-layout.desktop"
+
+cat << EOF > "$FILE"
+[Desktop Entry]
+Name=Change keyboard layout to german
+Type=Application
+Exec=DEBIAN_FRONTEND=noninteractive setxkbmap de
+EOF
+
+chown -R "$USER:$USER" "$FILE"
+```
 - [ ] Customize Unity launcher:
   <sup>[[src]](http://askubuntu.com/a/348107/207593)</sup>  
   `mkdir /etc/guest-session`
