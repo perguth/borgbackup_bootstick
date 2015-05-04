@@ -39,10 +39,11 @@ apt-get autoremove -y && apt-get clean
 ```
 - [ ] Autostart `indicator-multiload`:  
   <sup>[[src]](http://askubuntu.com/a/348107/207593)</sup>
-  <sup>[[src]](http://askubuntu.com/questions/48321/how-do-i-start-applications-automatically-on-login)</sup>
+  <sup>[[src]](http://askubuntu.com/questions/48321/how-do-i-start-applications-automatically-on-login)</sup>  
   `nano /etc/guest-session/prefs.sh`  
   insert:
 ```sh
+mkdir $HOME/.config/autostart
 FILE="$HOME/.config/autostart/start-indicator-multiload.desktop"
 
 cat << EOF > "$FILE"
