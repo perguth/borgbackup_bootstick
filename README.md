@@ -121,7 +121,7 @@ chown -R "$USER:$USER" "$FILE"
 4. Create USB-Stick with persistence file ("Startup Disk Creator").
 
 
-- [ ] Fix memtest for Unetbootin
+- [ ] Fix memtest for Unetbootin:<sup>[[src]](http://ubuntuforums.org/showthread.php?t=1182171&p=7909226#post7909226)</sup>  
 To permanently fix your usb stick edit syslinux.cfg in the root of the drive and remove the line
 "append initrd=/ubninit"
 from the memtest entry.
