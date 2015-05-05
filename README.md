@@ -80,7 +80,7 @@ cat << EOF > "$FILE"
 [Desktop Entry]
 Name=Change keyboard layout to german
 Type=Application
-Exec=DEBIAN_FRONTEND=noninteractive setxkbmap de
+Exec=setxkbmap de
 EOF
 
 chown -R "$USER:$USER" "$FILE"
