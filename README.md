@@ -9,19 +9,24 @@ chmod +x 5c99244436d24cfa4123/fixubuntu.sh
 ./5c99244436d24cfa4123/fixubuntu.sh
 rm -rf 5c99244436d24cfa4123
 ```
-- [ ] Add Universe sources:  
-  `apt-add-repository -y 'deb http://archive.ubuntu.com/ubuntu/ trusty universe'`
 - [x] Update Ubuntu:  
   `sudo apt-get update && sudo apt-get upgrade -y`
 - [x] Install Customizer requirements:  
-  `sudo apt-get install make binutils g++ python2.7 python2.7-dev python-qt4 pyqt4-dev-tools squashfs-tools xorriso x11-xserver-utils xserver-xephyr qemu-kvm qt4-linguist-tools -y`
+  `sudo apt-get install make binutils g++ python2.7 python2.7-dev python-qt4 pyqt4-dev-tools squashfs-tools xorriso x11-xserver-utils xserver-xephyr qemu-kvm qt4-linguist-tools git sshfs debhelper python-dev -y`
+- [x] Install bootstick package selection:  
+```sh
+apt-get install mc rsync git python3.4 python3.4-dev openssh-server python-virtualenv openssl libssl-dev python3-llfuse fuse libacl1 libacl1-dev attr python-tox vim indicator-multiload -y
+apt-get install mdadm smartmontools --no-install-recommends -y
+apt-get autoremove -y && apt-get clean
+```
 - [ ] Install Customizer:  
 ```sh
-cd ~
-git clone https://github.com/clearkimura/Customizer.git
-cd Customizer
-make && sudo make install
-cd .. && rm -rf Customizer
+wget https://github.com/clearkimura/Customizer/archive/master.tar.gz
+tar zxvf master.tar.gz
+cd Customizer-master
+make deb
+cd
+sudo dpkg -i *.deb
 ```
 - [ ] Chroot into Customizer:  
   `sudo customizer-gui`
@@ -31,12 +36,6 @@ cd .. && rm -rf Customizer
   `nano /etc/resolv.conf` insert own nameserver IP
 - [ ] Remove unnecessary software:  
   `apt-get autoremove libreoffice* -y`
-- [x] Install bootstick package selection:  
-```sh
-apt-get install mc rsync git python3.4 python3.4-dev openssh-server python-virtualenv openssl libssl-dev python3-llfuse fuse libacl1 libacl1-dev attr python-tox vim indicator-multiload -y
-apt-get install mdadm smartmontools --no-install-recommends -y
-apt-get autoremove -y && apt-get clean
-```
 - [ ] Autostart `indicator-multiload`:  
   <sup>[[src]](http://askubuntu.com/a/348107/207593)</sup>
   <sup>[[src]](http://askubuntu.com/questions/48321/how-do-i-start-applications-automatically-on-login)</sup>  
